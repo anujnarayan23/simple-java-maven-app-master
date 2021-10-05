@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package -s settings.xml'
+                sh 'mvn deploy -s settings.xml'
             }
         }//end build
         stage('Test') {
