@@ -17,8 +17,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
                 sh 'mvn sonar:sonar \
-  -Dsonar.host.url=http://34.125.27.246:9000 \
-  -Dsonar.login=${sonar}'
+                -Dsonar.host.url=http://34.125.27.246:9000 \
+                -Dsonar.login=${sonar}'
                 }
             }
         }//end of sonar
@@ -40,13 +40,13 @@ pipeline {
 					}
 				}
 
-				stage ('Publish build docker info') {
-				steps {
-				script {
-				server.publishBuildInfo buildInfo
-			}
-		}
-	}
+	// 			stage ('Publish build docker info') {
+	// 			steps {
+	// 			script {
+	// 			server.publishBuildInfo buildInfo
+	// 		}
+	// 	}
+	// }
 		
       }//end stages
     }//end pipeline
