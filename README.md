@@ -1,7 +1,7 @@
 # simple-java-maven-app
 
 This repository is for the
-[Build a Java app with Maven](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)
+[Build a Java app with Maven](https://github.com/anujnarayan23/simple-java-maven-app-master)
 tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
 
 The repository contains a simple Java application which outputs the string
@@ -9,7 +9,10 @@ The repository contains a simple Java application which outputs the string
 main application works as expected. The results of these tests are saved to a
 JUnit XML report.
 
-The `jenkins` directory contains an example of the `Jenkinsfile` (i.e. Pipeline)
-you'll be creating yourself during the tutorial and the `scripts` subdirectory
-contains a shell script with commands that are executed when Jenkins processes
-the "Deliver" stage of your Pipeline.
+This repo has Jenkins file which contains multiple stages.
+1. Clone repo
+2. Compile with pushing artifacts to Artifactory
+3. Junit test cases
+4. Sonar
+5. Docker build
+6. Docker push - publish the image to artifact
