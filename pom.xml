@@ -111,7 +111,8 @@
                 </executions>
             </plugin>
     </plugins>
-	<distributionManagement>
+  </build>
+  <distributionManagement>
     <repository>
         <id>central</id>
         <name>a0lpadz9rpt0j-artifactory-primary-0-releases</name>
@@ -123,5 +124,4 @@
         <url>https://devopscicd.jfrog.io/artifactory/default-maven-local</url>
     </snapshotRepository>
 </distributionManagement>
-  </build>
 </project>
