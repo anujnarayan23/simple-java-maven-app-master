@@ -15,12 +15,12 @@ pipeline {
         }//end of test
         stage('Sonar Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
+                //withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
 		withSonarQubeEnv('SonarQube') {
-                sh 'mvn sonar:sonar \
-                -Dsonar.host.url=http://34.125.179.94:9000 \
-                -Dsonar.login=${sonar}'
-		}
+                sh 'mvn sonar:sonar' 
+                //-Dsonar.host.url=http://34.125.179.94:9000 \
+                //-Dsonar.login=${sonar}'
+		//}
               }
             }
         }//end of sonar
