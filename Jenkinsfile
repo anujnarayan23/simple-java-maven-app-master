@@ -13,7 +13,7 @@ pipeline {
                 junit 'target/surefire-reports/*.xml'
             }
         }//end of test
-        stage('Sonar') {
+        stage('Sonar Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
                 sh 'mvn sonar:sonar \
@@ -22,6 +22,11 @@ pipeline {
                 }
             }
         }//end of sonar
+	stage("Sonar Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }//Sonar Quality gate end
 	stage('Docker Build') {
 	    steps {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io/" ]) {
