@@ -7,28 +7,28 @@ pipeline {
                 sh 'mvn deploy -s settings.xml'
             }
         }//end build
+	    
         stage('Test') {
             steps {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
             }
         }//end of test
+	    
         stage('Sonar Analysis') {
             steps {
-                //withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
-		withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube') {
                 sh 'mvn sonar:sonar' 
-                //-Dsonar.host.url=http://34.125.179.94:9000 \
-                //-Dsonar.login=${sonar}'
-		//}
               }
             }
         }//end of sonar
+	    
 	stage("Sonar Quality gate") {
             steps {
                 waitForQualityGate abortPipeline: true
             }
-        }//Sonar Quality gate end
+        }//end of Sonar Quality gate
+	    
 	stage('Docker Build') {
 	    steps {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io/" ]) {
@@ -37,6 +37,7 @@ pipeline {
 		}
 	    }
 	}//end of Docker Build
+	    
 	stage('Docker Push') {
 	    steps {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io" ]) {
@@ -44,6 +45,7 @@ pipeline {
 		}
 	     }
 	}//end of Docker Push
+	
 	// 			stage ('Publish build docker info') {
 	// 			steps {
 	// 			script {
