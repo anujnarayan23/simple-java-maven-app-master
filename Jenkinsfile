@@ -17,7 +17,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'Sonar', variable: 'sonar')]){
                 sh 'mvn sonar:sonar \
-                -Dsonar.host.url=http://34.125.27.246:9000 \
+                -Dsonar.host.url=http://34.125.179.94:9000 \
                 -Dsonar.login=${sonar}'
                 }
             }
