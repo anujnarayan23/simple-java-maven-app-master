@@ -20,6 +20,8 @@ spec:
      image: devopscicd.jfrog.io/default-docker-local/devops:tagversion
      ports:
      - containerPort: 8080
+   imagePullSecrets:
+     - name: regcred  
 
 ---
 apiVersion: v1
