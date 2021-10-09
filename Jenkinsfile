@@ -29,11 +29,11 @@ pipeline {
             }
         }//end of sonar
 	    
-	//stage("Sonar Quality gate") {
-            //steps {
-               // waitForQualityGate abortPipeline: true
-           // }
-       // }//end of Sonar Quality gate
+	stage("Sonar Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }//end of Sonar Quality gate
 	    
 	stage('Docker Build') {
 	    steps {
