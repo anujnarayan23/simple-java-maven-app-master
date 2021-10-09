@@ -2,8 +2,8 @@ pipeline {
     agent any
 	environment {
 				PROJECT_ID = 'leafy-market-327511'
-                CLUSTER_NAME = 'devops'
-                LOCATION = 'us-central1'
+                CLUSTER_NAME = 'my-first-cluster-1'
+                LOCATION = 'us-central1-c'
                 CREDENTIALS_ID = 'Kubernetes'		
 	}
     stages {
