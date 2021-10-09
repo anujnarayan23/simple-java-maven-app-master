@@ -4,24 +4,24 @@ kind: Deployment
 metadata:
  name: myapp-deployment-loadbalancer
  labels:
-  app: myapp-app-loadbalancer
+  app: myapp
 spec:
  replicas: 1
  selector:
   matchLabels:
-   app: myapp-app-loadbalancer
+   app: myapp
  template:
   metadata: 
    labels:
-    app: myapp-app-loadbalancer
+    app: myapp
   spec:
    containers:
-   - name: myapp-app-loadbalancer
-     image: devopscicd.jfrog.io/default-docker-local/devops:tagversion
+   - name: myapp
+     image: devopscicd.jfrog.io/default-docker-local/devops:${BUILD_NUMBER}
      ports:
      - containerPort: 8080
    imagePullSecrets:
-     - name: regcred  
+     - name: devops  
 
 ---
 apiVersion: v1
@@ -31,7 +31,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: myapp-app-loadbalancer
+    app: myapp
   ports:
     - protocol: TCP
       port: 80
