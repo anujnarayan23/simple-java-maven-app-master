@@ -50,7 +50,7 @@ pipeline {
 	// 			server.publishBuildInfo buildInfo
 	// 		}
 	// 	}
-	//. }
+	//}
 		
       }//end stages
     }//end pipeline
