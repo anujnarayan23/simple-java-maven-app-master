@@ -53,10 +53,18 @@ pipeline {
 	     }
 	}//end of Docker Push
 	
+	agent {
+    kubernetes {
+      	cloud 'kubernetes'
+      	defaultContainer 'jnlp'
+      }
+    }
 	 stage('Deploy to K8s') {
 		    steps{
+			script {
+				kubernetesDeploy(configs: "serviceLB.yml", kubeconfigId: "config")
 			    echo "Deployment started ..."
-				sh 'kubectl apply -f serviceLB.yaml'
+				//sh 'kubectl apply -f serviceLB.yaml'
 			   // sh 'ls -ltr'
 			   // sh 'pwd'
 			    //sh "sed -i 's/tagversion/${env.BUILD_NUMBER}/g' serviceLB.yaml"
