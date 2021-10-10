@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: myapp-deployment-loadbalancer
+ name: myapp-deployment
  labels:
   app: myapp
 spec:
@@ -17,9 +17,9 @@ spec:
   spec:
    containers:
    - name: myapp
-     image: devopscicd.jfrog.io/default-docker-local/devops:tagversion
+     image: devopscicd.jfrog.io/default-docker-local/devops:58
      ports:
-     - containerPort: 8080
+     - containerPort: 8082
    imagePullSecrets:
      - name: devops  
 
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service-loadbalancer
+  name: myapp-service
 spec:
-  type: LoadBalancer
   selector:
     app: myapp
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 8082
+      
