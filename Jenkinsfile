@@ -52,10 +52,10 @@ pipeline {
 		}
 	     }
 	}//end of Docker Push
-		}
+		
 
 	
-	 stage('Deploy to K8s') {
+	stage('Deploy to K8s') {
 	 agent {
 		kubernetes {
       	cloud 'kubernetes'
@@ -88,5 +88,5 @@ pipeline {
 	// 	}
 	// }
 		
-      //}//end stages
+      }//end stages
     }//end pipeline
