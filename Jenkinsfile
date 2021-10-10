@@ -52,14 +52,14 @@ pipeline {
 		}
 	     }
 	}//end of Docker Push
-	
+		}
+
 	agent {
     kubernetes {
       	cloud 'kubernetes'
       	defaultContainer 'jnlp'
       }
     }
-	}
 	 stage('Deploy to K8s') {
 		    steps{
 			script {
