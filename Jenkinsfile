@@ -25,7 +25,7 @@ pipeline {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
             }
-        }//end of test
+        }end of test
 	    
         stage('Sonar Analysis') {
             steps {
