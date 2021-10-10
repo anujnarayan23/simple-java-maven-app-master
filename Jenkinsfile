@@ -53,17 +53,18 @@ pipeline {
 	     }
 	}//end of Docker Push
 	
-	 //stage('Deploy to K8s') {
-		    //steps{
-			    //echo "Deployment started ..."
+	 stage('Deploy to K8s') {
+		    steps{
+			    echo "Deployment started ..."
+				sh ' kubectl apply -f serviceLB.yaml"
 			   // sh 'ls -ltr'
 			   // sh 'pwd'
 			    //sh "sed -i 's/tagversion/${env.BUILD_NUMBER}/g' serviceLB.yaml"
 			   // echo "Start deployment of serviceLB.yaml"
 			   // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'serviceLB.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    //echo "Deployment Finished ..."
-		    //}
-	   // }
+		    }
+	    }
     
 	
 	
