@@ -59,6 +59,7 @@ pipeline {
       	defaultContainer 'jnlp'
       }
     }
+	}
 	 stage('Deploy to K8s') {
 		    steps{
 			script {
@@ -86,5 +87,5 @@ pipeline {
 	// 	}
 	// }
 		
-      }//end stages
+      //}//end stages
     }//end pipeline
