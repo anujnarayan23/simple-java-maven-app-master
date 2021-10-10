@@ -9,12 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		   cleanWs(cleanWhenNotBuilt: false,
-                    deleteDirs: true,
-                    disableDeferredWipeout: true,
-                    notFailBuild: true,
-                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                               [pattern: '.propsfile', type: 'EXCLUDE']])
+
                 sh 'mvn -B -DskipTests clean package'
                 sh 'mvn deploy -s settings.xml'
             }
