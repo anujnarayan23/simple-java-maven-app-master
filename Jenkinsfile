@@ -56,7 +56,7 @@ pipeline {
 	 stage('Deploy to K8s') {
 		    steps{
 			    echo "Deployment started ..."
-				sh ' kubectl apply -f serviceLB.yaml"
+				sh 'kubectl apply -f serviceLB.yaml'
 			   // sh 'ls -ltr'
 			   // sh 'pwd'
 			    //sh "sed -i 's/tagversion/${env.BUILD_NUMBER}/g' serviceLB.yaml"
