@@ -54,13 +54,14 @@ pipeline {
 	}//end of Docker Push
 		}
 
-	agent {
-    kubernetes {
+	
+	 stage('Deploy to K8s') {
+	 agent {
+		kubernetes {
       	cloud 'kubernetes'
       	defaultContainer 'jnlp'
-      }
-    }
-	 stage('Deploy to K8s') {
+			}
+		}
 		    steps{
 			script {
 				kubernetesDeploy(configs: "serviceLB.yml", kubeconfigId: "config")
