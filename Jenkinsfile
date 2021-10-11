@@ -1,11 +1,11 @@
 pipeline {
     agent any
-	//environment {
-		//PROJECT_ID = 'leafy-market-327511'
-                //CLUSTER_NAME = 'my-first-cluster-1'
-               // LOCATION = 'us-central1-c'
-               // CREDENTIALS_ID = 'Kubernetes'		
-	//}
+	environment {
+		PROJECT_ID = 'leafy-market-327511'
+                CLUSTER_NAME = 'devops'
+                LOCATION = 'us-central1-c'
+                CREDENTIALS_ID = 'Kubernetes'		
+	}
     stages {
         stage('Build') {
             steps {
@@ -56,37 +56,25 @@ pipeline {
 
 	
 	stage('Deploy to K8s') {
-	 agent {
-		kubernetes {
-      	cloud 'kubernetes'
-      	defaultContainer 'jnlp'
-			}
-		}
+	 //agent {
+		//kubernetes {
+      	//cloud 'kubernetes'
+      	//defaultContainer 'jnlp'
+			//}
+		//}
 		    steps{
 			script {
-				kubernetesDeploy(configs: "serviceLB.yml", kubeconfigId: "config")
+				//kubernetesDeploy(configs: "serviceLB.yml", kubeconfigId: "config")
 			    echo "Deployment started ..."
 				//sh 'kubectl apply -f serviceLB.yaml'
-			   // sh 'ls -ltr'
-			   // sh 'pwd'
-			    //sh "sed -i 's/tagversion/${env.BUILD_NUMBER}/g' serviceLB.yaml"
-			   // echo "Start deployment of serviceLB.yaml"
-			   // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'serviceLB.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-			    //echo "Deployment Finished ..."
-		    }
-	    }
+			    sh 'ls -ltr'
+			    sh 'pwd'
+			    sh "sed -i 's/tagversion/g${env.BUILD_NUMBER}/g' serviceLB.yaml"
+			    echo "Start deployment of serviceLB.yaml"
+			    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'serviceLB.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+			    echo "Deployment Finished ..."
+		       }
+	            }
 		}
-    
-	
-	
-	
-	// 			stage ('Publish build docker info') {
-	// 			steps {
-	// 			script {
-	// 			server.publishBuildInfo buildInfo
-	// 		}
-	// 	}
-	// }
-		
       }//end stages
     }//end pipeline
