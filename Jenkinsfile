@@ -76,7 +76,7 @@ pipeline {
 		       }
 	            }
 		}//closed Deploy to GKE K8s
-	stage ('Monitoring')
+	    stage ('Monitoring'){
 	    steps{
 		    script {
 		          sh "kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/operator/crd/base/px.dev_viziers.yaml"
@@ -84,6 +84,7 @@ pipeline {
 			  sh "kubectl create namespace newrelic" 
 			  sh "kubectl apply -f newrelic-manifest.yaml"
 		    }
+		 }
 	    }
       }//end stages
     }//end pipeline
