@@ -55,7 +55,7 @@ pipeline {
 		
 
 	
-	stage('Deploy to K8s') {
+	stage('Deploy to GKE K8s') {
 	 //agent {
 		//kubernetes {
       	//cloud 'kubernetes'
@@ -75,6 +75,15 @@ pipeline {
 			    echo "Deployment Finished ..."
 		       }
 	            }
-		}
+		}//closed Deploy to GKE K8s
+	stage ('Monitoring')
+	    steps{
+		    script {
+		          sh "kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/operator/crd/base/px.dev_viziers.yaml && \"
+			  sh "kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/operator/helm/crds/olm_crd.yaml && \"
+			  sh "kubectl create namespace newrelic" 
+			  sh "kubectl apply -f newrelic-manifest.yaml"
+		    }
+	    }
       }//end stages
     }//end pipeline
