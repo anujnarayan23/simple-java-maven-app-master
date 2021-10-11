@@ -51,22 +51,11 @@ pipeline {
 		sh 'docker push devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
 		}
 	     }
-	}//end of Docker Push
-		
-
-	
+	}//end of Docker Push	
 	stage('Deploy to GKE K8s') {
-	 //agent {
-		//kubernetes {
-      	//cloud 'kubernetes'
-      	//defaultContainer 'jnlp'
-			//}
-		//}
 		    steps{
 			script {
-				//kubernetesDeploy(configs: "serviceLB.yml", kubeconfigId: "config")
 			    echo "Deployment started ..."
-				//sh 'kubectl apply -f serviceLB.yaml'
 			    sh 'ls -ltr'
 			    sh 'pwd'
 			    sh "sed -i 's/tagversion/${env.BUILD_NUMBER}/g' serviceLB.yaml"
@@ -75,16 +64,6 @@ pipeline {
 			    echo "Deployment Finished ..."
 		       }
 	            }
-		}//closed Deploy to GKE K8s
-	    //stage ('Monitoring'){
-	    //steps{
-		    //script {
-		          //sh "kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/operator/crd/base/px.dev_viziers.yaml"
-			  //sh "kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/operator/helm/crds/olm_crd.yaml"
-			  //sh "kubectl create namespace newrelic" 
-			  //sh "kubectl apply -f newrelic-manifest.yaml"
-		    //}
-		 //}
-	    //}
+		}//closed Deploy to GKE K8
       }//end stages
     }//end pipeline
