@@ -11,7 +11,7 @@ pipeline {
             steps {
 
                 sh 'mvn -B -DskipTests clean package'
-                sh 'mvn deploy -s settings.xml'
+                //sh 'mvn deploy -s settings.xml'
             }
         }//end build
 	    
