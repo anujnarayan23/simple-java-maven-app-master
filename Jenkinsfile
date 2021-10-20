@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	 tools {
+    maven '3.8.3'
+        }
 	environment {
 		PROJECT_ID = 'leafy-market-327511'
                 CLUSTER_NAME = 'devops'
