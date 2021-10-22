@@ -16,3 +16,5 @@ This repo has Jenkins file which contains multiple stages.
 4. Sonar
 5. Docker build
 6. Docker push - publish the image to artifact
+
+Test
