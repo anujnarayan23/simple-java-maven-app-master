@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Brnach name is ${VERSION}"
+                echo "Brnach name is ${BRANCH}"
                 sh 'mvn -B -DskipTests clean package'
                 //sh 'mvn deploy -s settings.xml'
             }
