@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    environment{
+        BRANCH = "${env.BRANCH_NAME}"
+    }
     stages {
         stage('Build') {
             steps {
-                sh '${env.BRANCH_NAME}'
+                echo "Brnach name is ${VERSION}"
                 sh 'mvn -B -DskipTests clean package'
                 //sh 'mvn deploy -s settings.xml'
             }
