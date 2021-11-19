@@ -3,9 +3,7 @@ pipeline {
 	environment {
    	 GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
   	}
- when { 
-            expression { GIT_BRANCH ==~ /feature\/[0-9]+\.[0-9]+\.[0-9]+/ }
-     }
+
     stages {
     	 stage("Env Build Number"){
             steps{
@@ -14,9 +12,6 @@ pipeline {
         }
         stage('Build') {
             steps {
-	    //	echo "The build number is ${env.BRANCH_NAME}"
-              //  echo "You can also use \${BRANCH_NAME} -> ${BRANCH_NAME}" 
-
                 sh 'mvn -B -DskipTests clean package'
                 //sh 'mvn deploy -s settings.xml'
             }
