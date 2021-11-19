@@ -1,14 +1,15 @@
 pipeline {
     agent any
-environment {
-    FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-    GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
-  }
+	environment {
+   	 GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+  	}
+ when { 
+            expression { GIT_BRANCH ==~ /feature\/[0-9]+\.[0-9]+\.[0-9]+/ }
+     }
     stages {
     	 stage("Env Build Number"){
             steps{
-                echo "The build number is ${env.GIT_BRANCH}"
-                echo "You can also use \${GIT_BRANCH} -> ${GIT_BRANCH}"                                                
+                echo "The git brnach is ${env.GIT_BRANCH}"                                               
             }
         }
         stage('Build') {
