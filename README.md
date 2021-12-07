@@ -2,7 +2,7 @@
 
 This repository is for the
 [Build a Java app with Maven](https://github.com/anujnarayan23/simple-java-maven-app-master)
-tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
+ tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
 
 The repository contains a simple Java application which outputs the string
 "Hello world!" and is accompanied by a couple of unit tests to check that the
