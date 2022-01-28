@@ -53,7 +53,7 @@ pipeline {
 	    steps {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io/" ]) {
 		sh 'docker push devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
-		sh 'docker rmi devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}'
+		sh 'docker rmi devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
 		}
 	     }
 	}//end of Docker Push	
