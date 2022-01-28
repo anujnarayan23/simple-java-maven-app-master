@@ -25,13 +25,13 @@ pipeline {
 				}
 			}//end of test
 	    
-     //   stage('Sonar Analysis') {
-       //     steps {
-         //       withSonarQubeEnv('SonarQube') {
-           //     sh 'mvn sonar:sonar' 
-             // }
-            //}
-       // }//end of sonar
+        stage('Sonar Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                sh 'mvn sonar:sonar' 
+              }
+            }
+        }//end of sonar
 	    
 	//stage("Sonar Quality gate") {
           //  steps {
