@@ -44,6 +44,7 @@ pipeline {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io/" ]) {
 		sh 'docker build -t "devops:${BUILD_NUMBER}" .'
 		sh 'docker tag "devops:${BUILD_NUMBER}" devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
+		sh 'docker rmi devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}'
 		}
 	    }
 	}//end of Docker Build
@@ -52,6 +53,7 @@ pipeline {
 	    steps {
 		withDockerRegistry([ credentialsId: "Artifactory", url: "https://devopscicd.jfrog.io/" ]) {
 		sh 'docker push devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
+		sh 'docker rmi devopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}'
 		}
 	     }
 	}//end of Docker Push	
