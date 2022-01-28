@@ -18,7 +18,7 @@ pipeline {
             }
         }//end build
 	    
-        stage('Test') {
+        stage('Unit Test') {
             steps {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
@@ -33,11 +33,11 @@ pipeline {
             }
         }//end of sonar
 	    
-	//stage("Sonar Quality gate") {
-          //  steps {
-            //    waitForQualityGate abortPipeline: true
-            //}
-        //}//end of Sonar Quality gate
+	stage("Sonar Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }//end of Sonar Quality gate
 	    
 	//stage('Docker Build') {
 	  //  steps {
